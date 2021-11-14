@@ -20,6 +20,8 @@ fn main() {
         let messager = a;
         let killer = killer_receive;
 
+        thread::sleep(Duration::from_millis(500));
+
         match messager.send(MESSAGE::Ping(0u64)) {
             Ok(_) => {}
 
@@ -29,7 +31,7 @@ fn main() {
         }
 
         loop {
-            thread::sleep(Duration::from_millis(2500));
+            thread::sleep(Duration::from_millis(1000));
 
             match killer.try_recv() {
                 Ok(_) => {
@@ -70,8 +72,16 @@ fn main() {
     let thread_two = thread::spawn(move || {
         let messager = b;
 
+        match messager.send(MESSAGE::Ping(0u64)) {
+            Ok(_) => {}
+
+            Err(_) => {
+                panic!("THREAD ONE COULD NOT SEND MESSAGE")
+            }
+        }
+
         loop {
-            thread::sleep(Duration::from_millis(2500));
+            thread::sleep(Duration::from_millis(1000));
 
             match messager.receive() {
                 Ok(m) => match m {
