@@ -1,7 +1,7 @@
 
-<center>
+<div align="center">
   <h1>multi-thread-bidirectional-message-test</h1>
-</center>
+</div>
   
 This repo is a very simply rust program designed to show that it is possible to send messages bidirectionally between threads.
 
