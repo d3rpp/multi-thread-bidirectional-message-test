@@ -1,5 +1,5 @@
-pub mod messenger;
-use messenger::Messenger;
+pub mod messager;
+use messager::Messager;
 use std::io;
 use std::sync::mpsc::channel;
 use std::thread;
@@ -12,7 +12,7 @@ enum MESSAGE {
 }
 
 fn main() {
-    let (a, b) = Messenger::<MESSAGE>::new();
+    let (a, b) = Messager::<MESSAGE>::new();
 
     let (killer_send, killer_receive) = channel::<()>();
 
